@@ -1,9 +1,3 @@
-# As a user,
-# When I visit a movie's show page.
-# I see the movie's title, creation year, and genre,
-# and a list of all its actors from youngest to oldest.
-# And I see the average age of all of the movie's actors
-
 require 'rails_helper'
 
 RSpec.describe 'movie show' do
@@ -95,6 +89,22 @@ RSpec.describe 'movie show' do
       within "#actor-#{@actor6.id}" do
         expect(page).to have_content(@actor6.age)
       end
+    end
+
+    it 'does not list actors not associated with the movie' do
+      actor9 = Actor.create!(name: 'Richard Attenborough', age: 100)
+
+      visit "/movies/#{@movie1.id}"
+
+      expect(page).not_to have_content(actor9.name)
+    end
+
+    it 'has a form to add an actor to this movie' do
+      visit "/movies/#{@movie1.id}"
+
+      expect(page).to have_content("Add an actor to this movie")
+      expect(page).to have_field("id")
+      expect(page).to have_selector("input[type=submit]")
     end
   end
 end
