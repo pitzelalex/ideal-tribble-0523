@@ -30,6 +30,18 @@ RSpec.describe 'movie show' do
       expect(page).to have_content(@movie1.title)
       expect(page).to have_content(@movie1.creation_year)
       expect(page).to have_content(@movie1.genre)
+
+      visit "/movies/#{@movie2.id}"
+  
+      expect(page).to have_content(@movie2.title)
+      expect(page).to have_content(@movie2.creation_year)
+      expect(page).to have_content(@movie2.genre)
+
+      visit "/movies/#{@movie3.id}"
+  
+      expect(page).to have_content(@movie3.title)
+      expect(page).to have_content(@movie3.creation_year)
+      expect(page).to have_content(@movie3.genre)
     end
   end
 end
