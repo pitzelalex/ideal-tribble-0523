@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'studios index' do
-  # Then I see all of the studios including name and location,
-  # And under each studio I see all of the studio's movies
-  # including the movie's title, creation year, and genre
   describe 'when I visit the page' do
     it 'shows all of the studios names and locations' do
       studio1 = Studio.create!(name: 'Universal', location: 'Hollywood')
@@ -34,7 +31,6 @@ RSpec.describe 'studios index' do
     movie3 = studio2.movies.create!(title: 'Desert Warrior', creation_year: 2021, genre: 'Action/Adventure')
 
     visit '/studios'
-
 
     within "#studio-#{studio1.id}" do
       expect(page).to have_content(movie1.title)
