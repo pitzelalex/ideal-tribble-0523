@@ -12,9 +12,10 @@
 <br>
 <div>
   <h3>Add an actor to this movie</h3>
-  <%= form_with url: "/movies", method: :post, local: true do |form| %>
+  <%= form_with url: "/actor_movies", method: :post, local: true do |form| %>
     <%= form.label "Actor ID:" %>
-    <%= form.number_field :id %>
+    <%= form.number_field :actor_id %>
+    <%= form.hidden_field :movie_id, value: @movie.id %>
     <%= form.submit %>
   <% end %>
 </div>

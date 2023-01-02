@@ -103,7 +103,7 @@ RSpec.describe 'movie show' do
       visit "/movies/#{@movie1.id}"
 
       expect(page).to have_content("Add an actor to this movie")
-      expect(page).to have_field("id")
+      expect(page).to have_field("actor_id")
       expect(page).to have_selector("input[type=submit]")
     end
 
@@ -112,7 +112,7 @@ RSpec.describe 'movie show' do
 
       visit "/movies/#{@movie1.id}"
 
-      fill_in "id", with: actor9.id
+      fill_in "actor_id", with: actor9.id
       find("input[type=submit]").click
       expect(current_path).to eq("/movies/#{@movie1.id}")
       expect(page).to have_content(actor9.name)
