@@ -35,7 +35,7 @@ RSpec.describe 'studios index' do
 
     visit '/studios'
 
-    
+
     within "#studio-#{studio1.id}" do
       expect(page).to have_content(movie1.title)
       expect(page).to have_content(movie1.creation_year)
