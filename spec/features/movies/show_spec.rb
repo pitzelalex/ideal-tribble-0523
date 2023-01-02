@@ -43,5 +43,32 @@ RSpec.describe 'movie show' do
       expect(page).to have_content(@movie3.creation_year)
       expect(page).to have_content(@movie3.genre)
     end
+
+    it 'lists the actors in the movie based on their age' do
+      visit "/movies/#{@movie1.id}"
+
+      expect(page).to have_content(@actor1.name)
+      expect(page).to have_content(@actor2.name)
+      expect(page).to have_content(@actor3.name)
+
+      expect(@actor2.name).to appear_before(@actor1.name)
+      expect(@actor1.name).to appear_before(@actor3.name)
+
+      visit "/movies/#{@movie2.id}"
+
+      expect(page).to have_content(@actor4.name)
+      expect(page).to have_content(@actor5.name)
+      expect(page).to have_content(@actor6.name)
+
+      expect(@actor6.name).to appear_before(@actor5.name)
+      expect(@actor5.name).to appear_before(@actor4.name)
+
+      visit "/movies/#{@movie3.id}"
+
+      expect(page).to have_content(@actor7.name)
+      expect(page).to have_content(@actor8.name)
+
+      expect(@actor7.name).to appear_before(@actor8.name)
+    end
   end
 end
