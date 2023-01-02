@@ -106,5 +106,16 @@ RSpec.describe 'movie show' do
       expect(page).to have_field("id")
       expect(page).to have_selector("input[type=submit]")
     end
+
+    it 'adds the actor to the movie' do
+      actor9 = Actor.create!(name: 'Richard Attenborough', age: 100)
+
+      visit "/movies/#{@movie1.id}"
+
+      fill_in "id", with: actor9.id
+      find("input[type=submit]").click
+      expect(current_path).to eq("/movies/#{@movie1.id}")
+      expect(page).to have_content(actor9.name)
+    end
   end
 end
