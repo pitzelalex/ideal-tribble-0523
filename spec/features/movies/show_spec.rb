@@ -70,5 +70,31 @@ RSpec.describe 'movie show' do
 
       expect(@actor7.name).to appear_before(@actor8.name)
     end
+
+    it 'lists the actors age besid their name' do
+      visit "/movies/#{@movie1.id}"
+
+      within "#actor-#{@actor1.id}" do
+        expect(page).to have_content(@actor1.age)
+      end
+      within "#actor-#{@actor2.id}" do
+        expect(page).to have_content(@actor2.age)
+      end
+      within "#actor-#{@actor3.id}" do
+        expect(page).to have_content(@actor3.age)
+      end
+
+      visit "/movies/#{@movie2.id}"
+
+      within "#actor-#{@actor4.id}" do
+        expect(page).to have_content(@actor4.age)
+      end
+      within "#actor-#{@actor5.id}" do
+        expect(page).to have_content(@actor5.age)
+      end
+      within "#actor-#{@actor6.id}" do
+        expect(page).to have_content(@actor6.age)
+      end
+    end
   end
 end
